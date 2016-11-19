@@ -1,6 +1,6 @@
 var apikey = 'bdfeb595210d01c6ea35d53a44557f8e';
 var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search';
-url += '&' + 'api_key=' + apikey;
+url += '&' + 'api_key=' + apikey + '&tags=truffle&format=json&nojsoncallback=1';
 var app = angular.module('flickrApp', []);
 var output = null;
 
