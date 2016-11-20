@@ -1,10 +1,9 @@
-var apikey = '06978083e5080079f06986a732851025';
-var searchUrl = 'https://api.flickr.com/services/rest/?method=flickr.photos.search';
-searchUrl += '&' + 'api_key=' + apikey + '&tags=truffle&format=json&nojsoncallback=1';
 var app = angular.module('flickrApp', []);
-var output = null;
-
 app.controller('flickrCtrl', function($scope, $http) {
+	var apikey = '06978083e5080079f06986a732851025';
+	var searchUrl = 'https://api.flickr.com/services/rest/?method=flickr.photos.search';
+	searchUrl += '&' + 'api_key=' + apikey + '&tags=truffle&format=json&nojsoncallback=1';
+	var output = null;
     $http.get(searchUrl)
     .then(function(searchResponse) {
         $scope.output = searchResponse.data;
