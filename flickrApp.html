@@ -13,9 +13,16 @@
 </head>
 <body>
 	<div ng-app="flickrApp" ng-controller="flickrCtrl">
-		<span ng-show="output"><h1>Output: {{output}}</h1></span>
+		<span ng-show="output">
+			<!-- https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg -->
+			<div ng-repeat="x in output.photos.photo">
+				<div>url: {{ x.url }}</div>
+			</div>
+			<h1>Output: {{output}}</h1>
+		</span>
 		<span ng-show="!output"><h1>There is no output</h1></span>
 	</div>
 	<script src="./script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </body>
 </html>
