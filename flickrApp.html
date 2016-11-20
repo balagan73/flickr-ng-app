@@ -11,10 +11,12 @@
 <body>
 	<div ng-app="flickrApp" ng-controller="flickrCtrl">
 		<span ng-show="output">
-			<!-- https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg -->
 			<div ng-repeat="x in output.photos.photo">
-				<div>url: {{ x.url }}</div>
-				<div><img ng-src="{{x.url}}" ng-alt="{{x.title}}"></div>
+				<div><img ng-src="{{x.url}}" ng-alt="{{x.title}}" ng-attr-title="{{x.title}}"></div>
+				Available sizes:
+				<div ng-repeat="size in x.sizes">
+					<a ng-href="{{size.source}}">{{size.label}} ({{size.width}} X {{size.height}})</a>
+				</div>
 			</div>
 			<h1>Output: {{output}}</h1>
 		</span>
