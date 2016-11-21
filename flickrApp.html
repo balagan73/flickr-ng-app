@@ -11,6 +11,17 @@
 </head>
 <body>
 	<div ng-app="flickrApp" ng-controller="flickrCtrl" class="container">
+		<form action="#">
+			<div class="row header-input">
+				<label for="search-box">Enter the tag to search for</label>
+				<div class="input-group">
+					<input id="search-box" type="text" class="form-control" ng-model="searchTerm"></input>
+					<span class="input-group-btn">
+						<button ng-click="submit('&tags=' + searchTerm)" class="btn btn-default glyphicon glyphicon-search" type="submit"></button>
+					</span>
+				</div>
+			</div>	
+		</form>
 		<span ng-show="output">
 			<div class="row">
 				<div ng-mouseleave="hovered = 0" ng-repeat="photo in output.photos.photo" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 photo-container text-center centered">

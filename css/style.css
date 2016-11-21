@@ -1,5 +1,5 @@
 .photo-container {
-	margin: 5px;
+	margin: 5px auto;
 	border: 1px;
 	border-style: solid;
 	border-color: gray;
@@ -25,4 +25,9 @@
 	margin: 25px;
 	font-size: x-small;
 	z-index: 2;
+}
+
+.header-input {
+	margin: 40px auto 10px;*/
+	float: left;
 }
