@@ -6,19 +6,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Flickr search</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="./css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
 <body>
-	<div ng-app="flickrApp" ng-controller="flickrCtrl">
+	<div ng-app="flickrApp" ng-controller="flickrCtrl" class="container">
 		<span ng-show="output">
-			<div ng-repeat="x in output.photos.photo">
-				<div><img ng-src="{{x.url}}" ng-alt="{{x.title}}" ng-attr-title="{{x.title}}"></div>
-				Available sizes:
-				<div ng-repeat="size in x.sizes">
-					<a ng-href="{{size.source}}">{{size.label}} ({{size.width}} X {{size.height}})</a>
+			<div class="row">
+				<div ng-mouseleave="hovered = 0" ng-repeat="photo in output.photos.photo" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 photo-container text-center centered">
+					<div class="centered">
+						<img ng-src="{{photo.url}}" ng-alt="{{photo.title}}" ng-attr-title="{{photo.title}}" class="img-responsive centered photo">
+					</div>
+					<a class="text-center" href="#" ng-mouseover="hovered = 1">Available sizes</a>
+					<div class="description" ng-show="hovered" >
+						<div ng-repeat="size in photo.sizes">
+							<a ng-href="{{size.source}}" target="_blank">{{size.label}} ({{size.width}} X {{size.height}})</a>
+						</div>
+					</div>
 				</div>
 			</div>
-			<h1>Output: {{output}}</h1>
+			<!--<h1>Output: {{output}}</h1>-->
 		</span>
 		<span ng-show="!output"><h1>There is no output</h1></span>
 	</div>

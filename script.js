@@ -1,20 +1,22 @@
 var app = angular.module('flickrApp', []);
 app.controller('flickrCtrl', function($scope, $http) {
-	var apikey = '06978083e5080079f06986a732851025';
+	var apikey = '57f694132e4714c29a64c9af890b124e';
 	var searchUrl = 'https://api.flickr.com/services/rest/?method=flickr.photos.search';
-	searchUrl += '&' + 'api_key=' + apikey + '&tags=truffle&format=json&nojsoncallback=1';
+	searchUrl += '&' + 'api_key=' + apikey + '&tags=colors&format=json&nojsoncallback=1';
 	var output = null;
+    var hovered = false;
     $http.get(searchUrl)
     .then(function(searchResponse) {
         $scope.output = searchResponse.data;
-        angular.forEach($scope.output.photos.photo, function (value, key) {
-        	value.url = 'https://farm' + value.farm + '.staticflickr.com/' + value.server + '/' + value.id + '_' + value.secret + '.jpg';
+        angular.forEach($scope.output.photos.photo, function (photoItem, key) {
+        	//photoItem.url = 'https://farm' + photoItem.farm + '.staticflickr.com/' + photoItem.server + '/' + photoItem.id + '_' + photoItem.secret + '.jpg';
         	var sizeUrl = 'https://api.flickr.com/services/rest/?method=flickr.photos.getSizes';
-        	sizeUrl += '&' + 'api_key=' + apikey + '&photo_id=' + value.id + '&format=json&nojsoncallback=1';
+        	sizeUrl += '&' + 'api_key=' + apikey + '&photo_id=' + photoItem.id + '&format=json&nojsoncallback=1';
         	$http.get(sizeUrl)
         	.then(function(sizeResponse) {
-        		value.sizes = sizeResponse.data.sizes.size;
-        		$scope.output.photos.photo[key] = value;
+        		photoItem.sizes = sizeResponse.data.sizes.size;
+                photoItem.url = sizeResponse.data.sizes.size[1].source;
+        		$scope.output.photos.photo[key] = photoItem;
         	})
         });
     });
