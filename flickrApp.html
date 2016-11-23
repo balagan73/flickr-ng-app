@@ -11,7 +11,13 @@
 </head>
 <body>
 	<div ng-app="flickrApp" ng-controller="flickrCtrl" class="container">
-		<form action="#">
+		<form>
+			<div class="row">
+				<select ng-options="item1 for item1 in level1" ng-model="level1Selected" ng-change="setLevel2()"></select>
+				<select ng-options="item2 for item2 in level2" ng-model="level2Selected" ng-change="setLevel3()"></select>
+				<select ng-options="item3 for item3 in level3" ng-model="level3Selected"></select>
+				<button ng-click="submit(('&tags=' + level2Selected + '+' + level3Selected))" class="btn btn-default glyphicon glyphicon-search" type="submit"></button>
+			</div>
 			<div class="row header-input">
 				<label for="search-box">Enter the tag to search for</label>
 				<div class="input-group">
