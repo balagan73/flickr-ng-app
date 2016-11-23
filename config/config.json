@@ -1,0 +1,10 @@
+{
+	"vehicle": {
+		"car": ["BMW", "Opel"],
+		"bus": ["Ikarus", "Volvo"]
+	},
+	"animal": {
+		"dog": ["labrador", "golden retriever"],
+		"cat": ["siamese", "persian"]
+	}
+}
